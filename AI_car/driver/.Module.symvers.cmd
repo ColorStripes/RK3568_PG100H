@@ -1,0 +1,1 @@
+cmd_/userdata/linaro_workspace/AI_car/driver/Module.symvers :=  sed 's/ko$$/o/'  /userdata/linaro_workspace/AI_car/driver/modules.order | scripts/mod/modpost      -o /userdata/linaro_workspace/AI_car/driver/Module.symvers -e -i Module.symvers -T - 

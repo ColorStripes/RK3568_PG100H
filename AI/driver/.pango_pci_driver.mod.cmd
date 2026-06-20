@@ -1,0 +1,1 @@
+cmd_/userdata/linaro_workspace/AI/driver/pango_pci_driver.mod := printf '%s\n'   pango_pci_driver.o | awk '!x[$$0]++ { print("/userdata/linaro_workspace/AI/driver/"$$0) }' > /userdata/linaro_workspace/AI/driver/pango_pci_driver.mod
