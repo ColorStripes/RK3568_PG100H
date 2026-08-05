@@ -1,0 +1,10 @@
+s_addr_0 = 159383552
+m_addr = 176160768
+type = 32
+stride = 0
+in_col_channel_num = 2560
+out_col_channel_num = 5120
+row_num = 40
+calculate_cin_num = 4
+calculate_cout_num = 1
+start = 8

@@ -1,0 +1,22 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_axi_datamover_0_0_1/sim/npu_ddr_axi_datamover_0_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_axi_datamover_1_0_1/sim/npu_ddr_axi_datamover_1_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_axi_datamover_2_0_1/sim/npu_ddr_axi_datamover_2_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_0/sim/bd_a5d6_microblaze_I_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_1/sim/bd_a5d6_rst_0_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_2/sim/bd_a5d6_ilmb_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_3/sim/bd_a5d6_dlmb_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_4/sim/bd_a5d6_dlmb_cntlr_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_5/sim/bd_a5d6_ilmb_cntlr_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_7/sim/bd_a5d6_second_dlmb_cntlr_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_8/sim/bd_a5d6_second_ilmb_cntlr_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_ddr4_0_0_1/bd_0/ip/ip_10/sim/bd_a5d6_iomodule_0_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_rst_250M_0_1/sim/npu_ddr_rst_250M_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_rst_ddr4_0_300M_0_1/sim/npu_ddr_rst_ddr4_0_300M_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_axi_datamover_3_0_1/sim/npu_ddr_axi_datamover_3_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_axi_datamover_4_0_1/sim/npu_ddr_axi_datamover_4_0.vhd" \
+"../../../../Yolo_top.ip_user_files/bd/npu_ddr/ip/npu_ddr_axi_datamover_5_0/sim/npu_ddr_axi_datamover_5_0.vhd" \
+
+# Do not sort compile order
+nosort

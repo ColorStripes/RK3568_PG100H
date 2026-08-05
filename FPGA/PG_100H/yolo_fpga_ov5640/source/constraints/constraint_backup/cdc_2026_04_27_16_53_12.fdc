@@ -1,0 +1,2 @@
+# 假设源时钟是 clk_a，目标时钟是 clk_b
+set_false_path -from [get_clocks clk_a] -to [get_clocks clk_b]

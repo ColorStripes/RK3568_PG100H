@@ -1,0 +1,16 @@
+s_addr_0 = 176160768
+s_addr_1 = 159383552
+m_addr = 167772160
+type = 136
+stride = 0
+in_col_channel_num = 2560
+out_col_channel_num = 5120
+row_num = 80
+calculate_cin_num = 2
+calculate_cout_num = 1
+scale_1 = 2896
+scale_2 = 1985
+scale_3 = 591221
+zero_1 = 144
+zero_2 = 0
+start = 3

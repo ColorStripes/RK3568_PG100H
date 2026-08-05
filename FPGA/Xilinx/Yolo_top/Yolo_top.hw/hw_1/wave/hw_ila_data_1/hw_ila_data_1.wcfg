@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="F:/FPGA/Yolo_top/Yolo_top.hw/hw_1/wave/hw_ila_data_1/hw_ila_data_1.wdb" id="1">
+         <top_modules>
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="12059fs"></ZoomEndTime>
+      <Cursor1Time time="3849fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="521"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="61" />
+   <wave_markers>
+   </wave_markers>
+   <wvobject fp_name="eth2cmd/udp2npu_data/next_state" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/next_state[5:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[5:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/state" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/state[5:0]</obj_property>
+      <obj_property name="ObjectShortName">state[5:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/start_d" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/start_d[6:0]</obj_property>
+      <obj_property name="ObjectShortName">start_d[6:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/instruction_buf/dout_d" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/instruction_buf/dout_d[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dout_d[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/calculate_end" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/calculate_end</obj_property>
+      <obj_property name="ObjectShortName">calculate_end</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/calculate_cnt" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/calculate_cnt[9:0]</obj_property>
+      <obj_property name="ObjectShortName">calculate_cnt[9:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/state" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/row_cnt" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/row_cnt[9:0]</obj_property>
+      <obj_property name="ObjectShortName">row_cnt[9:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/row_num_r" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/row_num_r[9:0]</obj_property>
+      <obj_property name="ObjectShortName">row_num_r[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/row_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/row_num[9:0]</obj_property>
+      <obj_property name="ObjectShortName">row_num[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/calculate_cout_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/calculate_cout_num[4:0]</obj_property>
+      <obj_property name="ObjectShortName">calculate_cout_num[4:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/calculate_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/calculate_num[9:0]</obj_property>
+      <obj_property name="ObjectShortName">calculate_num[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/cmd_addr" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/cmd_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_addr[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/cmd_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/cmd_valid</obj_property>
+      <obj_property name="ObjectShortName">cmd_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/cmd_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/cmd_ready</obj_property>
+      <obj_property name="ObjectShortName">cmd_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/s_data" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/s_data[127:0]</obj_property>
+      <obj_property name="ObjectShortName">s_data[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/s_last" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/s_last</obj_property>
+      <obj_property name="ObjectShortName">s_last</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/s_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/s_valid</obj_property>
+      <obj_property name="ObjectShortName">s_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/s_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/s_ready</obj_property>
+      <obj_property name="ObjectShortName">s_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/m_data_4" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/m_data_4[127:0]</obj_property>
+      <obj_property name="ObjectShortName">m_data_4[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/m_last" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/m_last</obj_property>
+      <obj_property name="ObjectShortName">m_last</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/m_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/m_ready</obj_property>
+      <obj_property name="ObjectShortName">m_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/m_req" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/m_req</obj_property>
+      <obj_property name="ObjectShortName">m_req</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/m_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/m_valid</obj_property>
+      <obj_property name="ObjectShortName">m_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/next_state" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/next_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[3:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/r_ram_cnt" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/r_ram_cnt[1:0]</obj_property>
+      <obj_property name="ObjectShortName">r_ram_cnt[1:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/raddr" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/raddr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">raddr[3:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/ren" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/ren[1:0]</obj_property>
+      <obj_property name="ObjectShortName">ren[1:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/state" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/w_ram_cnt" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/w_ram_cnt[1:0]</obj_property>
+      <obj_property name="ObjectShortName">w_ram_cnt[1:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/wen" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/wen[1:0]</obj_property>
+      <obj_property name="ObjectShortName">wen[1:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_cmd_addr" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_cmd_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out_buf_cmd_addr[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_cmd_len" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_cmd_len[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out_buf_cmd_len[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_cmd_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_cmd_valid</obj_property>
+      <obj_property name="ObjectShortName">out_buf_cmd_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_cmd_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_cmd_ready</obj_property>
+      <obj_property name="ObjectShortName">out_buf_cmd_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_data" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_data[127:0]</obj_property>
+      <obj_property name="ObjectShortName">out_buf_data[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_last" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_last</obj_property>
+      <obj_property name="ObjectShortName">out_buf_last</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_ready</obj_property>
+      <obj_property name="ObjectShortName">out_buf_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_top_inst/out_buf_ctrl_inst/r_ctl" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_top_inst/out_buf_ctrl_inst/r_ctl</obj_property>
+      <obj_property name="ObjectShortName">r_ctl</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_top_inst/out_buf_ctrl_inst/w_ctl" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_top_inst/out_buf_ctrl_inst/w_ctl</obj_property>
+      <obj_property name="ObjectShortName">w_ctl</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_buf_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_buf_valid</obj_property>
+      <obj_property name="ObjectShortName">out_buf_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_calculate_end" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_calculate_end</obj_property>
+      <obj_property name="ObjectShortName">out_calculate_end</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_calculate_end_receive" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_calculate_end_receive</obj_property>
+      <obj_property name="ObjectShortName">out_calculate_end_receive</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_cmd_addr" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_cmd_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out_m_cmd_addr[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_cmd_len" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_cmd_len[31:0]</obj_property>
+      <obj_property name="ObjectShortName">out_m_cmd_len[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_cmd_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_cmd_ready</obj_property>
+      <obj_property name="ObjectShortName">out_m_cmd_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_cmd_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_cmd_valid</obj_property>
+      <obj_property name="ObjectShortName">out_m_cmd_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_data" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_data[127:0]</obj_property>
+      <obj_property name="ObjectShortName">out_m_data[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_last" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_last</obj_property>
+      <obj_property name="ObjectShortName">out_m_last</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_valid" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_valid</obj_property>
+      <obj_property name="ObjectShortName">out_m_valid</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/out_m_ready" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/out_m_ready</obj_property>
+      <obj_property name="ObjectShortName">out_m_ready</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/layer" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/layer[6:0]</obj_property>
+      <obj_property name="ObjectShortName">layer[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/npu_layer" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/npu_layer[6:0]</obj_property>
+      <obj_property name="ObjectShortName">npu_layer[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/npu_layer_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/npu_layer_num[8:0]</obj_property>
+      <obj_property name="ObjectShortName">npu_layer_num[8:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/time_cnt" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/time_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">time_cnt[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_para_top_inst/weight_bias/cmd_len" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_para_top_inst/weight_bias/cmd_len[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_len[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_top_inst/calculate_cin_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_top_inst/calculate_cin_num[5:0]</obj_property>
+      <obj_property name="ObjectShortName">calculate_cin_num[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_top_inst/calculate_cout_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_top_inst/calculate_cout_num[7:0]</obj_property>
+      <obj_property name="ObjectShortName">calculate_cout_num[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="npu_top_inst/conv_top_inst/calculate_num" type="array">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">npu_top_inst/conv_top_inst/calculate_num[12:0]</obj_property>
+      <obj_property name="ObjectShortName">calculate_num[12:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/calculate_end" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/calculate_end</obj_property>
+      <obj_property name="ObjectShortName">calculate_end</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+   <wvobject fp_name="eth2cmd/udp2npu_data/calculate_end_receive" type="logic">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">eth2cmd/udp2npu_data/calculate_end_receive</obj_property>
+      <obj_property name="ObjectShortName">calculate_end_receive</obj_property>
+      <obj_property name="LABELRADIX">true</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+   </wvobject>
+</wave_config>

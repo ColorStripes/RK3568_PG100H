@@ -1,0 +1,65 @@
+# =========================================================================
+# CDC 跨时钟域约束 (紫光 PDS .fdc 格式)
+# =========================================================================
+
+# NPU 异步 FIFO (npu_to_core_cdc_bridge): clk_150m <-> ddrphy_sysclk
+# 这些是格雷码同步器路径，用 set_false_path 告知工具不做时序检查
+#set_false_path -through [get_cells {npu_cdc_top/npu_to_core_cdc_bridge/*}]
+
+## OV5640 摄像头 CDC FIFO: cmos1_pclk -> ddrphy_sysclk
+#set_false_path -through [get_cells {ov5640_top/ov5640/ov5640_cdc/*}]
+#
+## PCIe/AXI 中断同步路径
+#set_false_path -through [get_cells {ov5640_top/pipe_cdc/*}]
+
+
+
+# HDMI CDC FIFO: cmos1_pclk -> ddrphy_sysclk
+#set_false_path -through [get_cells {hdmi_top/hdmi_loop/ov5640_cdc/*}]
+
+# PCIe/AXI 中断同步路径
+#set_false_path -through [get_cells {hdmi_top/pipe_cdc/*}]
+
+
+
+
+set_false_path -through [get_pins -hier *ov5640_cdc*]
+set_false_path -through [get_pins -hier *npu_to_core_cdc_bridge*]
+#set_false_path -through [get_pins -hier *axis_async_fifo_cmd*]
+#set_false_path -through [get_pins -hier *axis_async_fifo_data*]
+#set_false_path -through [get_pins -hier *pipe_cdc*]
+
+# =========================================================================
+# NPU 时钟门控域隔离 (npu_clk_gated <-> clk_150m)
+# =========================================================================
+# npu_clk_gated 由 clk_150m 经 GTP_CLKBUFGCE 门控产生，两者频率相同但
+# BUFGCE 与 BUFG 的时钟树插入延迟不同（约 0.175ns skew），导致 hold 违例。
+# 两者间的数据传输均经过：
+#   - pipe 模块 (2级流水线同步)
+#   - npu_to_core_cdc_bridge (CDC 桥，已有 false path)
+# 设置 false path 避免工具对这两个时钟域之间的 skew 做 hold 检查。
+set_false_path -from [get_clocks npu_clk_gated] -to [get_clocks clk_150m]
+set_false_path -from [get_clocks clk_150m] -to [get_clocks npu_clk_gated]
+
+# =========================================================================
+# 异步 FIFO (axis_async_fifo) 跨时钟域约束 (专用于紫光 PDS .fdc)
+# =========================================================================
+
+# -------------------------------------------------------------------------
+# 1. 写时钟域 -> 读时钟域 (以 NPU 150MHz 写，AXI 131.25MHz 读为例)
+# 限制写指针（wr_ptr_gray）到读同步器（rd_ptr_gray_sync1）的走线延迟。
+# 延迟最大值设为：目标时钟(读时钟 131.25MHz)的周期，即 7.619ns。
+# -------------------------------------------------------------------------
+
+#set_max_delay -from [get_cells -hierarchical *wr_ptr_gray_reg*] \
+              -to   [get_cells -hierarchical *rd_ptr_gray_sync1_reg*] \
+              7.619
+
+# -------------------------------------------------------------------------
+# 2. 读时钟域 -> 写时钟域 (以 AXI 131.25MHz 读，NPU 150MHz 写为例)
+# 限制读指针（rd_ptr_gray）到写同步器（wr_ptr_gray_sync1）的走线延迟。
+# 延迟最大值设为：目标时钟(写时钟 150MHz)的周期，即 6.666ns。
+# -------------------------------------------------------------------------
+#set_max_delay -from [get_cells -hierarchical *rd_ptr_gray_reg*] \
+              -to   [get_cells -hierarchical *wr_ptr_gray_sync1_reg*] \
+              6.666

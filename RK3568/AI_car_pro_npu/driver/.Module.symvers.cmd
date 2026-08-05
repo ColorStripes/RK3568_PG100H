@@ -1,0 +1,1 @@
+cmd_/userdata/AI_car_pro/driver/Module.symvers :=  sed 's/ko$$/o/'  /userdata/AI_car_pro/driver/modules.order | scripts/mod/modpost      -o /userdata/AI_car_pro/driver/Module.symvers -e -i Module.symvers -T - 

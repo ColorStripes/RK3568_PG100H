@@ -1,0 +1,264 @@
+module out_buf_top #(
+    parameter AXI_DATA_WIDTH = 32,
+              AXI_ADDR_WIDTH = 32,
+    parameter CONV_CHA_PAR_OUT = 8,
+              CHA_PAR_OUT = 16,                                      //输出通道并行度
+              CHA_IMG_OUT = 128,                                     //图片输出最大通道数
+              MAX_OUT_CALULATE_NUM = (CHA_IMG_OUT / CONV_CHA_PAR_OUT),       //输出计算次数
+              CALULATE_CNT_WIDTH = $clog2(MAX_OUT_CALULATE_NUM),
+              MAX_OUT_LEN = 5120,                                   //此模块所输出的最大字节数  也就是输出一行*通道的字节数
+              LEN_WIDTH = $clog2(MAX_OUT_LEN),
+              MAX_OUT_ROW = 320,                                    //输出的IMG的最大行数
+              ROW_WIDTH = $clog2(MAX_OUT_ROW),
+              INT = 8,                                              //每个数的位宽
+              DATA_WIDTH = CHA_PAR_OUT * INT,                       //数据传输位宽    输出并行度 * INT8
+              DATA_DEPTH = (MAX_OUT_LEN / CHA_PAR_OUT),               //数据深度  这里是 W*channal/并行度  RAM总容量应该大于一行数据所需字节个数
+              READ_DELAY = 1                                        //读出数据所需要的延迟
+)
+(
+    input          clk              ,
+    input          rst              ,
+
+    input                       start            ,
+    input  [6 : 0]              type             ,
+    input                       stride           ,                            //0为1步长 1为2步长
+    input                       conv_start       ,
+    
+    input  [AXI_DATA_WIDTH-1 : 0]    m_addr          ,
+    input  [ROW_WIDTH : 0]           row_num            ,
+    (*mark_debug = "true"*)input  [LEN_WIDTH : 0]           out_col_channel_num, //out_col_channel_num = col * channel
+    (*mark_debug = "true"*)input  [CALULATE_CNT_WIDTH : 0]  calculate_cout_num ,     //输出通道计算次数 
+
+
+
+    input  [DATA_WIDTH-1 : 0]   s_data      ,
+    input                       s_valid     ,
+    input                       s_last      ,
+    output                      s_req       ,
+
+    output [DATA_WIDTH-1 : 0]   m_data ,
+    output                      m_last ,
+    output                      m_valid,
+    input                       m_ready, 
+
+    output [AXI_ADDR_WIDTH-1 : 0]  cmd_addr         ,
+    output [AXI_DATA_WIDTH-1 : 0]  cmd_len          ,
+    output                         cmd_valid        ,
+    input                          cmd_ready        ,
+
+    output           calculate_end,
+    input            calculate_end_receive
+);
+
+
+
+///////////////////////////////  寄存器  /////////////////////////////////////////////
+    reg  [6 : 0]                       type_reg                 ;
+    reg                                start_reg                ;
+    reg                                stride_reg               ;
+    reg  [ROW_WIDTH : 0]               row_num_reg              ;
+    reg  [CALULATE_CNT_WIDTH : 0]      calculate_cout_num_reg   ;
+    reg  [LEN_WIDTH : 0]               out_col_channel_num_reg  ;
+    reg  [AXI_DATA_WIDTH-1 : 0]        m_addr_reg               ;
+
+
+    always @(posedge clk) begin
+        if(start) begin
+            type_reg                <= type               ;
+            stride_reg              <= stride             ;
+            row_num_reg             <= row_num            ;
+            calculate_cout_num_reg  <= calculate_cout_num ;
+            out_col_channel_num_reg <= out_col_channel_num;
+            m_addr_reg              <= m_addr             ;
+        end
+        start_reg              <= start             ;
+    end
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+wire [DATA_WIDTH-1 : 0] ping_s_data ;
+wire                    ping_s_valid;
+wire                    ping_s_last ;
+wire                    ping_s_req  ;
+
+wire [DATA_WIDTH-1 : 0] ping_m_data ;
+wire                    ping_m_valid;
+wire                    ping_m_last ;
+wire                    ping_m_req  ;
+
+
+
+
+wire [DATA_WIDTH-1 : 0] pang_s_data ;
+wire                    pang_s_valid;
+wire                    pang_s_last ;
+wire                    pang_s_req;
+
+wire [DATA_WIDTH-1 : 0] pang_m_data ;
+wire                    pang_m_valid;
+wire                    pang_m_last ;
+wire                    pang_m_req  ;
+
+
+out_buf_ctrl #(
+    .AXI_DATA_WIDTH(AXI_DATA_WIDTH),
+    .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH),
+    .CONV_CHA_PAR_OUT(CONV_CHA_PAR_OUT),
+    .CHA_PAR_OUT(CHA_PAR_OUT),                                    //输出通道并行度
+    .CHA_IMG_OUT(CHA_IMG_OUT),                                    //图片输出最大通道数
+    .MAX_OUT_LEN(MAX_OUT_LEN),                                    //此模块所输出的最大字节数  也就是输出一行*通道的字节数
+    .MAX_OUT_ROW(MAX_OUT_ROW),                                    //输出的IMG的最大行数
+    .INT(INT)                                                     //每个数的位宽
+)
+out_buf_ctrl_inst (
+    .clk(clk)              ,
+    .rst(rst)              ,
+
+    .conv_start(conv_start),
+    .start(start_reg)            ,
+    .type(type_reg)              ,
+    .stride(stride_reg)          ,                            //0为1步长 1为2步长
+    
+    .base_addr(m_addr_reg),              //写内存的起始基地址
+    .out_col_channel_num(out_col_channel_num_reg),                  //m_data_len   输出一行的数据
+    .row_num(row_num_reg),
+    .calculate_cout_num(calculate_cout_num_reg),     //输出通道计算次数 
+
+
+    //当前模块接受数据
+    .s_data(s_data)  ,
+    .s_valid(s_valid),
+    .s_last(s_last) ,
+    .s_req(s_req),                  //req是有数进就拉低请求的是一行 ready是有数进 请求的是一个 进到最后一个才拉低   
+
+
+    //fifo向下级模块输出数据
+    .m_data(m_data) ,
+    .m_last(m_last) ,
+    .m_valid(m_valid),
+    .m_ready(m_ready), 
+
+    //ping接受数据
+    .ping_s_data(ping_s_data)    ,
+    .ping_s_valid(ping_s_valid)  ,
+    .ping_s_last(ping_s_last)   ,
+    .ping_s_req(ping_s_req)  ,
+
+    //ping向fifo输出数据
+    .ping_m_data(ping_m_data)   ,
+    .ping_m_valid(ping_m_valid)  ,
+    .ping_m_last(ping_m_last)   ,
+    .ping_m_req(ping_m_req)    ,
+
+
+    .pang_s_data(pang_s_data)    ,
+    .pang_s_valid(pang_s_valid)  ,
+    .pang_s_last(pang_s_last)   ,
+    .pang_s_req(pang_s_req)    ,
+
+
+    .pang_m_data(pang_m_data),
+    .pang_m_valid(pang_m_valid),
+    .pang_m_last(pang_m_last),
+    .pang_m_req(pang_m_req),
+ 
+    
+    .calculate_end(calculate_end),
+    .calculate_end_receive(calculate_end_receive),        
+
+    //指令数据
+    .cmd_addr(cmd_addr)  ,
+    .cmd_len(cmd_len)    ,
+    .cmd_valid(cmd_valid),
+    .cmd_ready(cmd_ready)          
+);
+
+
+
+
+
+
+out_buf #(
+    .CHA_PAR_OUT(CHA_PAR_OUT),                     //输出通道并行度
+    .CHA_IMG_OUT(CHA_IMG_OUT),                     //图片输出最大通道数
+    .CONV_CHA_PAR_OUT(CONV_CHA_PAR_OUT),
+    .MAX_CALULATE_NUM(MAX_OUT_CALULATE_NUM),
+    .MAX_OUT_LEN(MAX_OUT_LEN),                                    //此模块所输出的最大字节数  也就是输出一行*通道的字节数
+    .DATA_DEPTH(DATA_DEPTH),
+    .READ_DELAY(READ_DELAY),                       //读出数据所需要的延迟
+    .INT(INT)                                      //每个数的位宽
+)
+ping_buf(
+    .clk(clk),
+    .rst(rst),
+
+    .start(start_reg),
+    .conv_start(conv_start),
+    .calculate_cout_num(calculate_cout_num_reg),      //输出计算次数 
+
+    //当前模块接受数据
+    .s_data(ping_s_data)  ,
+    .s_valid(ping_s_valid),
+    .s_last(ping_s_last) ,
+    .s_req(ping_s_req),                  //req是有数进就拉低请求的是一行 ready是有数进 请求的是一个 进到最后一个才拉低              
+
+
+    //下级模块接受数据
+    .m_data(ping_m_data) ,
+    .m_last(ping_m_last) ,
+    .m_valid(ping_m_valid),
+    .m_req(ping_m_req)                   //这里是m_req 因为是下级FIFO请求
+
+);
+
+
+
+
+out_buf #(
+    .CHA_PAR_OUT(CHA_PAR_OUT),                     //输出通道并行度
+    .CHA_IMG_OUT(CHA_IMG_OUT),                     //图片输出最大通道数
+    .CONV_CHA_PAR_OUT(CONV_CHA_PAR_OUT),
+    .MAX_CALULATE_NUM(MAX_OUT_CALULATE_NUM),
+    .MAX_OUT_LEN(MAX_OUT_LEN),                                    //此模块所输出的最大字节数  也就是输出一行*通道的字节数
+    .DATA_DEPTH(DATA_DEPTH),
+    .READ_DELAY(READ_DELAY),                       //读出数据所需要的延迟
+    .INT(INT)                                      //每个数的位宽
+)
+pang_buf(
+    .clk(clk),
+    .rst(rst),
+
+    .start(start_reg),
+    .conv_start(conv_start),
+    .calculate_cout_num(calculate_cout_num_reg),      //输出计算次数 
+
+    //当前模块接受数据
+    .s_data(pang_s_data)  ,
+    .s_valid(pang_s_valid),
+    .s_last(pang_s_last) ,
+    .s_req(pang_s_req),                  //req是有数进就拉低请求的是一行 ready是有数进 请求的是一个 进到最后一个才拉低     
+
+
+    //下级模块接受数据
+    .m_data(pang_m_data) ,
+    .m_last(pang_m_last) ,
+    .m_valid(pang_m_valid),
+    .m_req(pang_m_req)                   //这里是m_req 因为是下级FIFO请求
+
+);
+
+
+
+
+
+
+endmodule

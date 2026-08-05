@@ -1,0 +1,2 @@
+# 假设源时钟是 clk_a，目标时钟是 clk_b
+set_false_path  -from [get_pins {ov5640_top/ov5640/ov5640_cdc/cam_clk}] -to [get_pins {ov5640_top/ov5640/ov5640_cdc/video_clk}]
