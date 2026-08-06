@@ -1,1 +1,0 @@
-cmd_/userdata/AI_car_pro/driver/pango_pci_driver.mod := printf '%s\n'   pango_pci_driver.o | awk '!x[$$0]++ { print("/userdata/AI_car_pro/driver/"$$0) }' > /userdata/AI_car_pro/driver/pango_pci_driver.mod

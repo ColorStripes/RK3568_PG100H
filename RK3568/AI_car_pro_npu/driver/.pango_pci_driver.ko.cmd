@@ -1,1 +1,0 @@
-cmd_/userdata/AI_car_pro/driver/pango_pci_driver.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /userdata/AI_car_pro/driver/pango_pci_driver.ko /userdata/AI_car_pro/driver/pango_pci_driver.o /userdata/AI_car_pro/driver/pango_pci_driver.mod.o;  true
