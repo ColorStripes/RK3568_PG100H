@@ -1,0 +1,10 @@
+torch
+torchvision
+tensorboard
+
+numpy==1.17.0
+matplotlib==3.1.2
+opencv==4.1.2
+tqdm==4.60.0
+Pillow==8.2.0
+h5py==2.10.0

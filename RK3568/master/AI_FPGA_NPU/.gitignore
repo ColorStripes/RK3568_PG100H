@@ -1,0 +1,29 @@
+# ===== 生成数据 / 测试数据（可由脚本重新生成） =====
+*.npy
+*.pth
+*.bin
+*.jpg
+*.png
+*.pyc
+__pycache__/
+npu_data/
+yolov5/npy/
+yolov5/plate_out/
+yolov5/logs/
+yolov5/ref/txt/
+.vs/
+
+# ===== 编译产物 =====
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.cmd
+*.symvers
+*.order
+*.so
+build/
+.tmp_*/
+compile_commands.json
+.clangd
