@@ -1,0 +1,19 @@
+###==== BEGIN Clocks
+create_clock -name {pclk}    -period {3.800}
+create_clock -name {pclk_div2}   -period {7.800}
+###==== END Clocks
+
+###==== BEGIN "Generated Clocks"
+###==== END "Generated Clocks"
+
+###==== BEGIN "Inputs/Outpusts"
+###==== END "Inputs/Outpusts"
+
+###==== BEGIN "Delay Paths"
+###==== END "Delay Paths"
+
+###==== BEGIN Attributes - (Populated from tab in SCOPE, do not edit)
+###==== END Attributes
+
+###==== BEGIN Attributes - IO table (Populated from tab in SCOPE, do not edit)
+###==== END Attributes(IO table)

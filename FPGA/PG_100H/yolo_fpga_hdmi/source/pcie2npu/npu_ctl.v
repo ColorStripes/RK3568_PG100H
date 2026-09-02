@@ -1,8 +1,11 @@
 module npu_ctl #(
     parameter AXI_DATA_WIDTH = 128,
               AXI_ADDR_WIDTH = 32,
-    parameter INSTRUCTION_DATA_DEPTH = 3101,          //缓存的指令数
-              NPU_LAYER = 88,
+
+    parameter INSTRUCTION_NUM = 3100,          //缓存的指令数
+              INSTRUCTION_WIDTH = 32,
+
+    parameter NPU_LAYER = 88,
               LAYER_WIDTH = $clog2(NPU_LAYER + 1)
 )(
     // 全局时钟与复位
@@ -70,14 +73,19 @@ module npu_ctl #(
 
 
 wire [31 : 0]               m_npu_instruction      ;
-wire                        m_npu_instruction_valid;
-wire                        m_npu_instruction_ready;
+wire                        m_npu_start            ;
+wire                        m_almost_empty         ;
+wire                        m_npu_instruction_ren  ;
+wire                        m_npu_instruction_rewind;
 
 wire [LAYER_WIDTH-1 : 0]    m_npu_layer;   
 
 pcie_npu #(
     .AXI_DATA_WIDTH(AXI_DATA_WIDTH),
     .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH),
+
+    .INSTRUCTION_WIDTH(INSTRUCTION_WIDTH),
+    .INSTRUCTION_NUM(INSTRUCTION_NUM),
 
     .NPU_LAYER(NPU_LAYER)
 )
@@ -111,9 +119,13 @@ pcie_npu(
     //用户逻辑
     .npu_clk(npu_clk),
     .npu_rst(npu_rst),
-    .m_npu_instruction      (m_npu_instruction      ),
-    .m_npu_instruction_valid(m_npu_instruction_valid),
-    .m_npu_instruction_ready(m_npu_instruction_ready),
+
+
+    .m_npu_start              (m_npu_start              ),
+    .m_npu_instruction        (m_npu_instruction        ),
+    .m_almost_empty           (m_almost_empty           ),
+    .m_npu_instruction_ren    (m_npu_instruction_ren    ),
+    .m_npu_instruction_rewind (m_npu_instruction_rewind ),
 
     .m_npu_layer(m_npu_layer) ,
 
@@ -132,7 +144,7 @@ pcie_npu(
 
 
 instruction_buf #(
-    .DATA_DEPTH(INSTRUCTION_DATA_DEPTH),          //缓存的指令数
+    .INSTRUCTION_WIDTH(INSTRUCTION_WIDTH),
     .NPU_LAYER(NPU_LAYER)
 )
 instruction_buf(
@@ -145,9 +157,11 @@ instruction_buf(
     .calculate_end_receive(calculate_end_receive),
 
     //instruction
-    .s_npu_instruction      (m_npu_instruction      ),
-    .s_npu_instruction_valid(m_npu_instruction_valid),
-    .s_npu_instruction_ready(m_npu_instruction_ready),
+    .s_npu_start              (m_npu_start              ),
+    .s_npu_instruction        (m_npu_instruction        ),
+    .s_almost_empty           (m_almost_empty           ),
+    .s_npu_instruction_ren    (m_npu_instruction_ren    ),
+    .s_npu_instruction_rewind (m_npu_instruction_rewind ),
 
     .npu_layer(m_npu_layer),
 

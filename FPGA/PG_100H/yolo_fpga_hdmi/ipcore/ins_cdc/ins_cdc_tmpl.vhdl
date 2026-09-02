@@ -19,7 +19,7 @@ COMPONENT ins_cdc
     rd_en : IN STD_LOGIC;
     rd_data : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     rd_empty : OUT STD_LOGIC;
-    rd_water_level : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+    rd_water_level : OUT STD_LOGIC_VECTOR(12 DOWNTO 0);
     almost_empty : OUT STD_LOGIC
   );
 END COMPONENT;

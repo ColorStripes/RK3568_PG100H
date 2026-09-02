@@ -4,6 +4,9 @@ module pcie_npu #(
     parameter AXI_DATA_WIDTH = 128,
               AXI_ADDR_WIDTH = 32,
 
+    parameter INSTRUCTION_WIDTH = 32,
+              INSTRUCTION_NUM = 3100,
+
     parameter NPU_LAYER = 88,
               LAYER_WIDTH = $clog2(NPU_LAYER + 1)
 )(
@@ -36,9 +39,20 @@ module pcie_npu #(
     //用户逻辑
     input                         npu_clk,
     input                         npu_rst,
-    output     [31 : 0]           m_npu_instruction,
-    output reg                    m_npu_instruction_valid,
-    input                         m_npu_instruction_ready,
+
+
+
+    output                                   m_npu_start,
+    output  [INSTRUCTION_WIDTH-1 : 0]        m_npu_instruction,
+    output                                   m_almost_empty,
+    input                                    m_npu_instruction_ren,
+    input                                    m_npu_instruction_rewind,
+
+    
+
+
+
+
 
     output reg [LAYER_WIDTH-1 : 0]  m_npu_layer ,
 
@@ -51,12 +65,14 @@ module pcie_npu #(
     input                       npu_req_receive           
 );
 
+    wire s_almost_full;
+    
     // ==========================================
     // 状态机定义 (4个状态)
     // ==========================================
-    localparam IDLE = 2'b00, INSTRUCTION = 2'b01, NPU_NUM = 2'b10, WRITE_RESP = 2'b11;
+    localparam IDLE = 3'b000, INSTRUCTION = 3'b001, NPU_NUM = 3'b010, NPU_START = 3'b011, WRITE_RESP = 3'b100;
 
-    reg [1 : 0] state, next_state;
+    reg [2 : 0] state, next_state;
     
     // ==========================================
     // 第一段：状态机时序逻辑
@@ -84,7 +100,10 @@ module pcie_npu #(
                     end 
                     else if (s_axi_awaddr == 32'h5000_0000) begin
                         next_state = NPU_NUM;
-                    end 
+                    end
+                    else if (s_axi_awaddr == 32'h5100_0000) begin
+                        next_state = NPU_START;
+                    end
                     else begin
                         // 如果传入其他地址，默认切入INSTRUCTION消耗掉数据，防止总线死锁
                         next_state = INSTRUCTION; 
@@ -100,6 +119,13 @@ module pcie_npu #(
             end
 
             NPU_NUM: begin
+                // 突发传输：同上
+                if (s_axi_wvalid && s_axi_wready && s_axi_wlast) begin
+                    next_state = WRITE_RESP;
+                end
+            end
+
+            NPU_START: begin
                 // 突发传输：同上
                 if (s_axi_wvalid && s_axi_wready && s_axi_wlast) begin
                     next_state = WRITE_RESP;
@@ -123,8 +149,8 @@ module pcie_npu #(
     // awready: 只有在 IDLE 状态时才接收地址
     assign s_axi_awready = (state == IDLE);
 
-    // wready: 在 INSTRUCTION 或 NPU_NUM 状态下准备接收突发数据
-    assign s_axi_wready  = (state == INSTRUCTION) || (state == NPU_NUM);
+    // wready: 在 INSTRUCTION 或 NPU_NUM 或 NPU_START 状态下准备接收突发数据
+    assign s_axi_wready  = ((state == INSTRUCTION) && !s_almost_full) || (state == NPU_NUM) || (state == NPU_START);
 
     // bvalid: 在 WRITE_RESP 状态下发出响应信号
     assign s_axi_bvalid  = (state == WRITE_RESP);
@@ -134,77 +160,143 @@ module pcie_npu #(
 
 
     // -----------------------------------------------------
-    // 用户逻辑扩展区：你可以利用以下两个使能信号，将 s_axi_wdata 写入 RAM 或 FIFO
+    // 层数计数器（axi 域接收一次后稳定；同步到 npu 域再使用）
     // -----------------------------------------------------
     wire npu_layer_en   = (state == NPU_NUM) && s_axi_wvalid && s_axi_wready;
-    // Layer 寄存器逻辑
+
+    reg  [LAYER_WIDTH-1 : 0] layer_axi;
+    reg                      layer_valid_axi;
     always @(posedge axi_clk) begin
         if (axi_rst) begin
-            m_npu_layer <= 32'h0;
+            layer_axi       <= {LAYER_WIDTH{1'b0}};
+            layer_valid_axi <= 1'b0;
         end 
         else if (npu_layer_en) begin
-            m_npu_layer <= s_axi_wdata[LAYER_WIDTH-1 : 0];
+            layer_axi       <= s_axi_wdata[LAYER_WIDTH-1 : 0];
+            layer_valid_axi <= 1'b1;   // 写完后拉高，此后层数不再改变
         end
+    end
+
+    // 层数 valid 2 级同步到 npu 域，稳定后再采样 layer_axi（多比特准静态 CDC）
+    reg layer_valid_s1, layer_valid_s2;
+    always @(posedge npu_clk) begin
+        if (npu_rst) begin
+            layer_valid_s1 <= 1'b0;
+            layer_valid_s2 <= 1'b0;
+        end else begin
+            layer_valid_s1 <= layer_valid_axi;
+            layer_valid_s2 <= layer_valid_s1;
+        end
+    end
+
+    always @(posedge npu_clk) begin
+        if (npu_rst)
+            m_npu_layer <= {LAYER_WIDTH{1'b0}};
+        else if (layer_valid_s2)
+            m_npu_layer <= layer_axi;
     end
 
 
 
-    reg [2 : 0] remain_num /*synthesis PAP_MARK_DEBUG="1"*/;
-    always @(posedge axi_clk) begin
-        if (axi_rst) begin
-            remain_num <= 0;
-        end
-        else if (s_axi_wvalid && s_axi_wready && s_axi_wlast) begin
-            // 完美匹配 128位 找无效 32位 的需求
-            remain_num <= (!s_axi_wstrb[15:12])  + 
-                          (!s_axi_wstrb[11:8] )  + 
-                          (!s_axi_wstrb[7:4]  )  + 
-                          (!s_axi_wstrb[3:0]  )  ;
-        end
-    end
 
 
-
-
+    // // -----------------------------------------------------
+    // // 指令缓存
+    // // -----------------------------------------------------
     wire instr_en = (state == INSTRUCTION) && s_axi_wvalid && s_axi_wready;
 
-    wire empty;
-    wire rd_en = !empty;
-    wire [8 : 0] rd_water_level;
+    // 每拍 128bit 含 4 条 32bit 指令；末拍不足时，有效指令排在低位、高位为占位
+    localparam WORDS_PER_BEAT = AXI_DATA_WIDTH / INSTRUCTION_WIDTH;                                   // 128/32 = 4
+    localparam PAD_WORDS      = (WORDS_PER_BEAT - (INSTRUCTION_NUM % WORDS_PER_BEAT)) % WORDS_PER_BEAT; // 末拍占位字数(0~3)
+
+    ins_cdc_replay #(
+        .WR_DATA_WIDTH(AXI_DATA_WIDTH),
+        .RD_DATA_WIDTH(INSTRUCTION_WIDTH),
+        .WR_DEPTH(1024),
+        .RD_DEPTH(4096),
+        .ALMOST_FULL_NUM(1020),
+        .ALMOST_EMPTY_NUM(PAD_WORDS)
+    )
+    ins_cdc_replay(
+        // ---- 写侧（axi_clk 域） ----
+        .wr_clk(axi_clk),
+        .wr_rst(axi_rst),
+        .wr_en(instr_en),
+        .wr_data(s_axi_wdata),
+        .wr_full(),
+        .almost_full(s_almost_full),
+
+        // ---- 读侧（npu_clk 域） ----
+        .rd_clk(npu_clk),
+        .rd_rst(npu_rst),
+        .rd_en(m_npu_instruction_ren),      // 消费当前 FWFT 字（高有效）
+        .rd_data(m_npu_instruction),    // FWFT 输出
+        .rd_empty(),   // = !fwft_valid
+        .almost_empty(m_almost_empty),
+        .rewind(m_npu_instruction_rewind)      // 读指针复位到 0（重放）
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------
+    // 启动指令（跨时钟域：axi_clk 检测 -> npu_clk 同步输出脉冲）
+    // -----------------------------------------------------
+    // axi 域：命中启动魔数时翻转 toggle（每个启动命令翻一次）
+    wire start_cmd = (state == NPU_START) && s_axi_wvalid && s_axi_wready && (s_axi_wdata == 32'hf0f0_f0f0);
+
+    reg start_toggle_axi;
+    always @(posedge axi_clk) begin
+        if (axi_rst)
+            start_toggle_axi <= 1'b0;
+        else if (start_cmd)
+            start_toggle_axi <= ~start_toggle_axi;
+    end
+
+    // 2 级同步 + 1 级边沿检测，切到 npu_clk 域
+    reg start_toggle_s1, start_toggle_s2, start_toggle_s3;
     always @(posedge npu_clk) begin
-        if(npu_rst) begin
-            m_npu_instruction_valid <= 1'b0;
-        end
-        else begin
-            m_npu_instruction_valid <= rd_en && (rd_water_level > remain_num);
+        if (npu_rst) begin
+            start_toggle_s1 <= 1'b0;
+            start_toggle_s2 <= 1'b0;
+            start_toggle_s3 <= 1'b0;
+        end else begin
+            start_toggle_s1 <= start_toggle_axi;
+            start_toggle_s2 <= start_toggle_s1;
+            start_toggle_s3 <= start_toggle_s2;
         end
     end
 
-    ins_cdc  ins_cdc(
-      .wr_clk(axi_clk),               // input
-      .wr_rst(axi_rst),               // input
-      .wr_en(instr_en),               // input
-      .wr_data(s_axi_wdata),          // input [127:0]
-      .wr_full(),                     // output
-      .almost_full(),                 // output
+    // toggle 每翻转一次，在 npu_clk 域产生单周期脉冲
+    assign m_npu_start = start_toggle_s2 ^ start_toggle_s3;
 
-      .rd_clk(npu_clk),                // input
-      .rd_rst(npu_rst),                // input
-      .rd_en(rd_en),                  // input
-      .rd_data(m_npu_instruction),              // output [31:0]
-      .rd_empty(empty),            // output
-      .rd_water_level(rd_water_level),    // output [8:0]
-      .almost_empty()     // output
-    );
+
+
+
+
+
+
+
+
 
     ////////////////////////// NPU_END  //////////////////////////
-
-
     localparam NPU_IDLE = 1'b0, NPU_END = 1'b1;
     // ==========================================
     // 第一段：状态机时序逻辑
     // ==========================================
-    reg npu_state, npu_next_state;
+    reg npu_state, npu_next_state/*synthesis PAP_MARK_DEBUG="1"*/;
     always @(posedge npu_clk) begin
         if (npu_rst) begin
             npu_state <= NPU_IDLE;

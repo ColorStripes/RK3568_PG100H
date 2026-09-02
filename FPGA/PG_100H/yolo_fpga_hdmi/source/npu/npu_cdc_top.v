@@ -5,7 +5,7 @@ module npu_cdc_top #(
               AXI_ADDR_WIDTH         = 32,
               DDR_DATA_WIDTH_IN      = 128,          //发送给DDR
               DDR_DATA_WIDTH_OUT     = 128,          //从DDR读出
-              INSTRUCTION_DATA_DEPTH = 3101,
+              INSTRUCTION_NUM = 3100,
     //npu
     parameter CHA_PAR_IN  = `CHA_PAR_IN,                           //输入通道并行度
               CHA_PAR_OUT = `CHA_PAR_OUT,                           //输出通道并行度
@@ -333,7 +333,7 @@ npu_to_core_cdc_bridge (
     npu_ctl #(
         .AXI_DATA_WIDTH(DDR_DATA_WIDTH_IN),
         .AXI_ADDR_WIDTH(AXI_ADDR_WIDTH),
-        .INSTRUCTION_DATA_DEPTH(INSTRUCTION_DATA_DEPTH),          //缓存的指令数
+        .INSTRUCTION_NUM(INSTRUCTION_NUM),          //缓存的指令数
         .NPU_LAYER(88)
     )
     npu_ctl(

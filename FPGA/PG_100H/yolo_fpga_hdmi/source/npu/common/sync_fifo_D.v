@@ -21,8 +21,6 @@ module sync_fifo_D #(
 );
 
     localparam ADDR_WIDTH = $clog2(DATA_DEPTH);
-
-    reg [DATA_WIDTH-1 : 0] mem [0 : DATA_DEPTH-1];
     
     reg [ADDR_WIDTH-1 : 0] wr_ptr = 0;
     reg [ADDR_WIDTH-1 : 0] rd_ptr = 0;

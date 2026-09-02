@@ -1,0 +1,13 @@
+###==== BEGIN Clocks
+create_generated_clock -name {clk_50m} -source [get_ports {free_clk}] [get_nets {ov5640_clk.clkout0}] -master_clock [get_clocks {ref_clk}] -multiply_by {2} -divide_by {1}
+###==== END Clocks
+
+create_clock -name {cmos1_pclk} [get_ports {cmos1_pclk}] -period {11.900} -waveform {0.000 5.950}
+define_attribute {n:cmos1_pclk} {PAP_CLOCK_DEDICATED_ROUTE} {FALSE} 
+#create_clock -name {cmos2_pclk} [get_ports {cmos2_pclk}] -period {11.900} -waveform {0.000 5.950}
+#define_attribute {n:cmos2_pclk} {PAP_CLOCK_DEDICATED_ROUTE} {FALSE}
+ 
+set_clock_uncertainty {0.200} [get_clocks {cmos1_pclk}]  -setup -hold
+#set_clock_uncertainty {0.200} [get_clocks {cmos2_pclk}]  -setup -hold
+set_clock_groups -asynchronous -group [get_clocks {cmos1_pclk}]
+#set_clock_groups -asynchronous -group [get_clocks {cmos2_pclk}]

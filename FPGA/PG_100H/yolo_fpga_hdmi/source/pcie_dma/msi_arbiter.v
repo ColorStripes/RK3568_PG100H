@@ -20,17 +20,17 @@ module msi_arbiter #(
     input clk,              // 时钟信号
     input rst,              // 异步复位，高有效
 
-    input       cfg_msi_en/* synthesis PAP_MARK_DEBUG="true" */, // MSI使能寄存器，为0时屏蔽所有中断
-    input       dma_active/* synthesis PAP_MARK_DEBUG="true" */, // DMA活动标志，为1时优先响应msi[0]
+    input       cfg_msi_en, // MSI使能寄存器，为0时屏蔽所有中断
+    input       dma_active, // DMA活动标志，为1时优先响应msi[0]
 
-    input      [MSI_NUM-1 : 0] msi_req      /* synthesis PAP_MARK_DEBUG="true" */,           // MSI中断请求信号，来自各外设
-    output reg [MSI_NUM-1 : 0] msi_grant    /* synthesis PAP_MARK_DEBUG="true" */,      // 仲裁结果grant信号
+    input      [MSI_NUM-1 : 0] msi_req      ,           // MSI中断请求信号，来自各外设
+    output reg [MSI_NUM-1 : 0] msi_grant    ,      // 仲裁结果grant信号
 
-    output reg                 ven_msi_req      /* synthesis PAP_MARK_DEBUG="true" */,   // 向PCIe主机发送的中断请求
-    input                      ven_msi_grant    /* synthesis PAP_MARK_DEBUG="true" */, // PCIe主机的握手应答信号1bit握手
-    output reg     [4 : 0]     ven_msi_vector   /* synthesis PAP_MARK_DEBUG="true" */, // 当前仲裁选中的中断向量号
+    output reg                 ven_msi_req      ,   // 向PCIe主机发送的中断请求
+    input                      ven_msi_grant    , // PCIe主机的握手应答信号1bit握手
+    output reg     [4 : 0]     ven_msi_vector   , // 当前仲裁选中的中断向量号
      
-    output      [31 : 0]       cfg_msi_pending  /* synthesis PAP_MARK_DEBUG="true" */ // MSI待处理中断状态寄存器
+    output      [31 : 0]       cfg_msi_pending   // MSI待处理中断状态寄存器
 );
 
     // 中断向量寄存器
@@ -45,9 +45,9 @@ module msi_arbiter #(
             5'b00100:
                 ven_msi_vector = 5'd1;         //CAM
             5'b01000:
-                ven_msi_vector = 5'd3;
+                ven_msi_vector = 5'd2;
             5'b10000:
-                ven_msi_vector = 5'd4;
+                ven_msi_vector = 5'd3;
             default:
                 ven_msi_vector = 5'd0;
         endcase

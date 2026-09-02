@@ -52,13 +52,13 @@ localparam WR_BYTE_EN = 0 ; // @IPC bool
 
 localparam BYTE_SIZE = 8 ; // @IPC enum 8,9
 
-localparam WR_DEPTH_WIDTH = 6 ; // @IPC int 9,20
+localparam WR_DEPTH_WIDTH = 10 ; // @IPC int 9,20
 
 localparam WR_DATA_WIDTH = 128 ; // @IPC int 1,1152
 
 localparam BE_WIDTH = 1 ; // @IPC int 1,128
 
-localparam RD_DEPTH_WIDTH = 8 ; // @IPC int 9,20
+localparam RD_DEPTH_WIDTH = 12 ; // @IPC int 9,20
 
 localparam RD_DATA_WIDTH = 32 ; // @IPC int 1,1152
 
@@ -78,7 +78,7 @@ localparam EMPTY_WL_EN = 1 ; // @IPC bool
 
 localparam ASYN_FIFO_EN = "1" ; // @IPC bool
 
-localparam ALMOST_FULL_NUM = 60 ; // @IPC int
+localparam ALMOST_FULL_NUM = 1020 ; // @IPC int
 
 localparam ALMOST_EMPTY_NUM = 4 ; // @IPC int
 

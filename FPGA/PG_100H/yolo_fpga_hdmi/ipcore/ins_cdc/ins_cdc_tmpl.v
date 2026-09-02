@@ -18,6 +18,6 @@ ins_cdc the_instance_name (
   .rd_en(rd_en),                      // input
   .rd_data(rd_data),                  // output [31:0]
   .rd_empty(rd_empty),                // output
-  .rd_water_level(rd_water_level),    // output [8:0]
+  .rd_water_level(rd_water_level),    // output [12:0]
   .almost_empty(almost_empty)         // output
 );

@@ -2506,3 +2506,174 @@ dev_map -devmap_infer_internal_clock true
 pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
 report_timing 
 gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+add_fic "C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi/synthesize/top_syn.fic"
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+pnr -plc_decongestion 7 -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+remove_fic -force"C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi/synthesize/top_syn.fic"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+add_fic "C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi/synthesize/top_syn.fic"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+remove_fic -force"C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi2/synthesize/top_syn.fic"
+add_design "C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi2/source/pcie2npu/ins_cdc_replay.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+add_fic "C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi2/synthesize/top_syn.fic"
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+dev_map -devmap_infer_internal_clock true 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+remove_fic "C:/Users/ColorStripes/Desktop/yolo_fpga_hdmi2/synthesize/top_syn.fic"
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module top
+synthesize -ads -fanout_guide 50 -max_path 10 -nworst 2 -retiming -selected_syn_tool_opt 2 
+dev_map -devmap_infer_internal_clock true 
+pnr -plc_decongestion 7 -enable_route_constraint_iterate -mode {performance} -optimize_multi_corner_timing -fix_hold_violation 
+report_timing 
+gen_bit_stream -create_bin_file -compress_bitstream true -master_configuration_clock_frequency {25M} 
