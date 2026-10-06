@@ -1,0 +1,3 @@
+# This file is automatically written.  Do not modify.
+proc gen_USERPARAMETER_ADDR_WIDTH_VALUE {USER_ADDR_WIDTH } {expr ((($USER_ADDR_WIDTH + 7) / 8) * 8)}
+proc gen_USERPARAMETER_KEEP_WIDTH_VALUE {DATA_WIDTH } {expr $DATA_WIDTH / 8}
